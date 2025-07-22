@@ -25,6 +25,7 @@ partial class Form1
 
 
     private Label scoreLabel;
+    private Label LosingLabel;
     /// <summary>
     ///  Required method for Designer support - do not modify
     ///  the contents of this method with the code editor.
@@ -39,6 +40,9 @@ partial class Form1
         this.DoubleBuffered = true;
         this.ForeColor = Color.White;
 
+        LosingLabel = new();
+        LosingLabel.Font = new Font(FontFamily.GenericSansSerif, 24);
+        LosingLabel.AutoSize = true;
 
         scoreLabel = new();
         scoreLabel.Text = "Score: 0";
@@ -46,7 +50,7 @@ partial class Form1
         scoreLabel.AutoSize = true;
         scoreLabel.Left = ClientSize.Width / 2 - scoreLabel.Width / 2;
 
-
+        Controls.Add(LosingLabel);
         Controls.Add(Computer.pictureBox);
         Controls.Add(Ball.pictureBox);
 

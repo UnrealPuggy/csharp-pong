@@ -73,9 +73,13 @@ public partial class Form1 : Form
         if (Ball.IsColliding(Player))
         {
             score++;
+            Ball.x = Player.x + Player.width;
             Ball.vx *= -1;
         }
-
+        if (Ball.x < -20)
+        {
+            GameOver(this.score);
+        }
         // score++;
         scoreLabel.Text = $"Score: {score}";
         scoreLabel.Left = ClientSize.Width / 2 - scoreLabel.Width / 2;
@@ -86,6 +90,14 @@ public partial class Form1 : Form
         Computer.updateDraw();
         Player.updateDraw();
         // Console.WriteLine("a");
+    }
+    private void GameOver(int score)
+    {
+        LosingLabel.Text = $"You Lost! You Had: {score} points!";
+        LosingLabel.Left = ClientSize.Width / 2 - LosingLabel.Width / 2;
+        LosingLabel.Top = ClientSize.Height / 2 - LosingLabel.Height / 2;
+        gameTimer.Enabled = false;
+        LosingLabel.Visible = true;
     }
     private void KeyIsDown(object? sender, KeyEventArgs e)
     {
