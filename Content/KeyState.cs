@@ -1,4 +1,4 @@
-namespace Content
+namespace Pong.Content
 {
     class KeyState
     {

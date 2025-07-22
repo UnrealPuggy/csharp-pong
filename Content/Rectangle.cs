@@ -1,4 +1,4 @@
-namespace Content
+namespace Pong.Content
 {
     public class Rectangle(int x, int y, int width, int height)
     {

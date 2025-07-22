@@ -1,6 +1,6 @@
 using System.Drawing.Drawing2D;
 
-namespace Content;
+namespace Pong.Content;
 
 
 public class Entity

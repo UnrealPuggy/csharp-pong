@@ -4,9 +4,8 @@ using System.Media;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Content;
 using Pong.Content;
-using Rectangle = Content.Rectangle;
+using Rectangle = Pong.Content.Rectangle;
 
 
 namespace Pong;
