@@ -1,10 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>winexe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <RootNamespace>idk_yet</RootNamespace>
     <Nullable>enable</Nullable>
+    <PublishSingleFile>true</PublishSingleFile>
+        <SelfContained>true</SelfContained>
+
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
