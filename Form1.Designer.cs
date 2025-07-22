@@ -47,7 +47,7 @@ partial class Form1
         scoreLabel.Left = ClientSize.Width / 2 - scoreLabel.Width / 2;
 
 
-
+        Controls.Add(Computer.pictureBox);
         Controls.Add(Ball.pictureBox);
 
 

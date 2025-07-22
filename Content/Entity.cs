@@ -21,13 +21,26 @@ public class Entity
         get => rect.y;
         set => rect.y = value;
     }
-
+    public int width
+    {
+        get => rect.width;
+        set => rect.width = value;
+    }
+    public int height
+    {
+        get => rect.height;
+        set => rect.height = value;
+    }
 
     public Entity(int x, int y, int w, int h, Color color)
     {
         rect = new(x, y, w, h);
         pictureBox.BackColor = color;
         rect.CloneOntoPictureBox(pictureBox);
+    }
+    public bool IsColliding(Entity other)
+    {
+        return rect.AABB(other.rect);
     }
 
 
