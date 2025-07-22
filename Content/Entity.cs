@@ -31,7 +31,11 @@ public class Entity
         get => rect.height;
         set => rect.height = value;
     }
-
+    public bool visible
+    {
+        get => pictureBox.Visible;
+        set => pictureBox.Visible = value;
+    }
     public Entity(int x, int y, int w, int h, Color color)
     {
         rect = new(x, y, w, h);

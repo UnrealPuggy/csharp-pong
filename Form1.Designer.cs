@@ -1,4 +1,8 @@
-﻿namespace Pong;
+﻿using System.Drawing.Text;
+using System.Reflection;
+using Pong.Content;
+
+namespace Pong;
 
 partial class Form1
 {
@@ -39,14 +43,20 @@ partial class Form1
         this.BackColor = Color.Black;
         this.DoubleBuffered = true;
         this.ForeColor = Color.White;
+        // Replace "<YourAssemblyName>" with your actual assembly name (usually your project name).
+        // Replace "MyWavResource.wav" with the actual name of your WAV file (including extension) within the Resources folder.
+        // Font customFont = FontUtils.LoadFontFromStream(s, 20f);
+        PrivateFontCollection fontCollection = new();
+        fontCollection.AddFontFile(FileUtils.ExtractEmbeddedAsset("Content/Fonts/AndyBold.ttf")); // path to .ttf file
 
         LosingLabel = new();
-        LosingLabel.Font = new Font(FontFamily.GenericSansSerif, 24);
+        // new FontFamily()
+        LosingLabel.Font = new Font(fontCollection.Families[0], 24);
         LosingLabel.AutoSize = true;
 
         scoreLabel = new();
         scoreLabel.Text = "Score: 0";
-        scoreLabel.Font = new Font(FontFamily.GenericMonospace, 24);
+        scoreLabel.Font = new Font(fontCollection.Families[0], 24);
         scoreLabel.AutoSize = true;
         scoreLabel.Left = ClientSize.Width / 2 - scoreLabel.Width / 2;
 
@@ -57,7 +67,7 @@ partial class Form1
 
         Controls.Add(Player.pictureBox);
 
-        this.Text = "My First Winform game";
+        this.Text = "Pong";
         Controls.Add(scoreLabel);
     }
 

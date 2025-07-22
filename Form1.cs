@@ -1,8 +1,11 @@
 using System.Diagnostics;
 using System.Drawing.Drawing2D;
+using System.Media;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Content;
+using Pong.Content;
 using Rectangle = Content.Rectangle;
 
 
@@ -41,6 +44,18 @@ public partial class Form1 : Form
         // Console.WriteLine(gameTimer.ToString());
     }
     private int score = 0;
+    string bounceSoundPath = FileUtils.ExtractEmbeddedAsset("Content/Sounds/bounce.wav");
+    public void bounce()
+    {
+        // Assembly a = Assembly.GetExecutingAssembly();
+        // Replace "<YourAssemblyName>" with your actual assembly name (usually your project name).
+        // Replace "MyWavResource.wav" with the actual name of your WAV file (including extension) within the Resources folder.
+        // Stream? s = a.GetManifestResourceStream("pong.Content.Sounds.bounce.wav");
+
+        SoundPlayer e = new(bounceSoundPath);
+        e.Play();
+
+    }
     public void GameTick(object? sender, System.EventArgs e)
     {
 
@@ -59,19 +74,23 @@ public partial class Form1 : Form
         {
             Ball.x = ClientSize.Width - 60;
             Ball.vx *= -1;
+            bounce();
         }
         if (Ball.y + Ball.height > ClientSize.Height)
         {
             Ball.y = ClientSize.Height - 20;
             Ball.vy *= -1;
+            bounce();
         }
         if (Ball.y < 0)
         {
             Ball.y = 0;
             Ball.vy *= -1;
+            bounce();
         }
         if (Ball.IsColliding(Player))
         {
+            bounce();
             score++;
             Ball.x = Player.x + Player.width;
             Ball.vx *= -1;
@@ -80,9 +99,19 @@ public partial class Form1 : Form
         {
             GameOver(this.score);
         }
+
+        if (Player.y < -Player.height)
+        {
+            Player.y = ClientSize.Height;
+        }
+        if (Player.y > ClientSize.Height)
+        {
+            Player.y = -Player.height;
+        }
         // score++;
         scoreLabel.Text = $"Score: {score}";
         scoreLabel.Left = ClientSize.Width / 2 - scoreLabel.Width / 2;
+        Computer.x = ClientSize.Width - 40;
 
         Computer.y = Ball.y + 10 - Computer.height / 2;
         Computer.y = Math.Clamp(Computer.y, 0, ClientSize.Height - 120);
@@ -96,12 +125,20 @@ public partial class Form1 : Form
         LosingLabel.Text = $"You Lost! You Had: {score} points!";
         LosingLabel.Left = ClientSize.Width / 2 - LosingLabel.Width / 2;
         LosingLabel.Top = ClientSize.Height / 2 - LosingLabel.Height / 2;
+
+        Ball.visible = false;
+        Player.visible = false;
+        Computer.visible = false;
+
+        scoreLabel.Visible = false;
         gameTimer.Enabled = false;
         LosingLabel.Visible = true;
     }
     private void KeyIsDown(object? sender, KeyEventArgs e)
     {
         Key[e.KeyCode] = true;
+
+
 
     }
     private void KeyIsUp(object? sender, KeyEventArgs e)

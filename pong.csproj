@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>winexe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <RootNamespace>idk_yet</RootNamespace>
+    <RootNamespace>pong</RootNamespace>
     <Nullable>enable</Nullable>
     <PublishSingleFile>true</PublishSingleFile>
         <SelfContained>true</SelfContained>
@@ -11,5 +11,9 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+    <ItemGroup>
+  <EmbeddedResource Include="Content\Sounds\bounce.wav" />
+    <EmbeddedResource Include="Content\Fonts\AndyBold.ttf" />
 
+</ItemGroup>
 </Project>

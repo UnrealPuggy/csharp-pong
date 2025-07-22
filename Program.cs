@@ -1,3 +1,5 @@
+using Pong.Content;
+
 namespace Pong;
 
 static class Program
@@ -13,5 +15,13 @@ static class Program
         // see https://aka.ms/applicationconfiguration.
         ApplicationConfiguration.Initialize();
         Application.Run(new Form1());
+
+        AppDomain.CurrentDomain.ProcessExit += (s, e) =>
+        {
+            foreach (string file in FileUtils.tempFiles)
+            {
+                File.Delete(file);
+            }
+        };
     }
 }
